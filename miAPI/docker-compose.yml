@@ -1,0 +1,16 @@
+
+services:
+  api:
+    build: .
+    container_name: server_fastapi
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./app:/app/app   # Permite autoreload al modificar el código
+
+
+
+
+#Sirve para definir y orquestar varios contenedores Docker como una sola aplicación.
+#En vez de levantar contenedores “a mano” con docker run, 
+#Compose te permite describir qué se levanta, cómo se conecta y con qué configuración, todo en un solo archivo.

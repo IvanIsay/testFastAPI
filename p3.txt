@@ -1,0 +1,28 @@
+1. dentro de la carpeta miAPI crea una llamada app
+    mueve el archivo main.py a esta carpeta
+
+2. A la misma altura crea
+    requirements.txt
+    docker-compose.yml
+    dockerfile
+
+3. Con los archivos correctos asegura estar en la carpeta miAPI
+    Ejecuta
+       $ docker-compose up --build  : crea imagen si no existe y un nuevo contenedor siempre
+
+4. Comprueba funcionamiento
+
+5. Ctrl +c x3 para cancelar
+
+6. solo levanta en contenedor sin volver a crearlo
+    $ docker compose up --no-recreat
+
+7. Procesos no visibles en la terminal VS
+    $ docker-compose start
+
+8.
+    $ docker compose ps -a
+    $ docker compose ps 
+
+
+9. Endpoints y respuestas
