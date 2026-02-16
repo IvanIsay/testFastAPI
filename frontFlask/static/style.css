@@ -1,0 +1,25 @@
+body {
+    font-family: Arial;
+    margin: 40px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 60%;
+}
+
+th, td {
+    border: 1px solid #333;
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #222;
+    color: white;
+}
+
+a {
+    color: red;
+    text-decoration: none;
+}

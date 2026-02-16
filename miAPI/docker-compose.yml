@@ -1,8 +1,8 @@
 
 services:
-  api:
+  api_test:
     build: .
-    container_name: server_fastapi
+    container_name: server_FA_TEST
     ports:
       - "5000:5000"
     volumes:
