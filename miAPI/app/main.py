@@ -4,12 +4,25 @@ from fastapi import FastAPI, status, HTTPException
 import asyncio
 from typing import Optional
 
+from fastapi.middleware.cors import CORSMiddleware
+
+
+
 # Instacia del servidor
 app = FastAPI(
     title='MI primer API',
     description='Ivan Isay Guerra',
     version='1.0.0'
     )
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 #TB ficticia
 usuarios=[

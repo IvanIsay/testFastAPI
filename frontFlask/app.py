@@ -3,12 +3,12 @@ import requests
 
 app = Flask(__name__)
 
-API_URL = "http://127.0.0.1:5000/v1/usuarios/"
+API = "http://127.0.0.1:5000/v1/usuarios/"
 
 # Página principal
 @app.route("/")
 def index():
-    response = requests.get(API_URL)
+    response = requests.get(API)
     data = response.json()
     usuarios = data.get("usuarios", [])
     return render_template("index.html", usuarios=usuarios)
@@ -23,14 +23,14 @@ def crear_usuario():
         "edad": int(request.form["edad"])
     }
 
-    requests.post(API_URL, json=nuevo_usuario)
+    requests.post(API, json=nuevo_usuario)
     return redirect("/")
 
 
 # Eliminar usuario
 @app.route("/eliminar/<int:id>")
 def eliminar_usuario(id):
-    requests.delete(API_URL + str(id))
+    requests.delete(API + str(id))
     return redirect("/")
 
 
