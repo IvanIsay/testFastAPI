@@ -3,9 +3,8 @@
 from fastapi import FastAPI, status, HTTPException
 import asyncio
 from typing import Optional
-
 from fastapi.middleware.cors import CORSMiddleware
-
+from pydantic import BaseModel, Field
 
 
 # Instacia del servidor
@@ -24,42 +23,31 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-#TB ficticia
+
+#******************************
+# TB ficticia
+#******************************
+
+
 usuarios=[
     {"id":1,"nombre":"Juan","edad":21},
     {"id":2,"nombre":"Israel","edad":21},
     {"id":3,"nombre":"Sofi","edad":21},
 ]
 
-#Endpoints
-@app.get("/",tags=['Inicio'])
-async def bienvenida():
-    return {"mensaje": "¡Bienvenido a mi API!"}
 
-@app.get("/HolaMundo" ,tags=['Bienvenida Asincrona'])
-async def hola():
-    await asyncio.sleep(3) #simulacion de una peticion
-    return {
-        "mensaje":"¡Hola Mundo FastAPI!",
-        "estatus":"200"
-            }
+#******************************
+# Modelo Validacion Pydantic
+#******************************
+class UsuarioBase(BaseModel):
+    id:int=Field(...,gt=0,description="Identificador Usuario")
+    nombre: str = Field(..., min_length=3, max_length=50, description="Nombre del usuario")
+    edad: int = Field(..., ge=0, le=120, description="Edad válida entre 0 y 120")
     
-@app.get("/v1/parametroOb/{id}",tags=['Parametro Obligatorio'])
-async def consultaUno(id:int):
-    return {"Se encontro usuario": id}
-
-
-@app.get("/v1/parametroOp/",tags=['Parametro Opcional'])
-async def consultaTodos(id:Optional[int]=None):
-    if id is not None:
-        for usuariok in usuarios:
-            if usuariok["id"] == id:
-                return{"mensaje":"usuario encontrado","usuario":usuariok}
-        return {"mensaje":"usuario no encontrado","usuario":id}
-    else:
-        return {"mensaje":"No se proporciono id" }
-    
-
+     
+#******************
+#  Usuario CRUD
+#******************
 
 @app.get("/v1/usuarios/",tags=['CRUD HTTP'])
 async def leer_usuarios( ):
@@ -69,8 +57,8 @@ async def leer_usuarios( ):
         "usuarios":usuarios
     }
     
-@app.post("/v1/usuarios/",tags=['CRUD HTTP'],status_code=status.HTTP_201_CREATED)
-async def crear_usuario(usuario:dict):
+@app.post("/v1/usuarios/",tags=['CRUD HTTP'] ,status_code=status.HTTP_201_CREATED)
+async def crear_usuario(usuario:UsuarioBase):
     for usr in usuarios:
         if usr["id"] == usuario.get("id"):
             raise HTTPException(
@@ -138,3 +126,40 @@ async def eliminar_usuario(id: int):
         status_code=404,
         detail="Usuario no encontrado"
     )
+    
+    
+    
+    
+    
+#******************
+#  Otros EndPoints
+#******************
+    
+    
+@app.get("/",tags=['Inicio'])
+async def bienvenida():
+    return {"mensaje": "¡Bienvenido a mi API!"}
+
+@app.get("/HolaMundo" ,tags=['Bienvenida Asincrona'])
+async def hola():
+    await asyncio.sleep(3) #simulacion de una peticion
+    return {
+        "mensaje":"¡Hola Mundo FastAPI!",
+        "estatus":"200"
+            }
+    
+@app.get("/v1/parametroOb/{id}",tags=['Parametro Obligatorio'])
+async def consultaUno(id:int):
+    return {"Se encontro usuario": id}
+
+
+@app.get("/v1/parametroOp/",tags=['Parametro Opcional'])
+async def consultaTodos(id:Optional[int]=None):
+    if id is not None:
+        for usuariok in usuarios:
+            if usuariok["id"] == id:
+                return{"mensaje":"usuario encontrado","usuario":usuariok}
+        return {"mensaje":"usuario no encontrado","usuario":id}
+    else:
+        return {"mensaje":"No se proporciono id" }
+    

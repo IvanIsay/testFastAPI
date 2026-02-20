@@ -9,9 +9,10 @@ import {
   ScrollView,
 } from "react-native";
 
-const API_URL = "http://localhost:5000/v1/usuarios/";
+const API = "http://localhost:5000/v1/usuarios/";
 
 export default function App() {
+
   const [usuarios, setUsuarios] = useState([]);
   const [nombre, setNombre] = useState("");
   const [edad, setEdad] = useState("");
@@ -21,9 +22,9 @@ export default function App() {
    {/* Funcion Para consutar Usuarios*/}
   const obtenerUsuarios = async () => {
     try {
-      const response = await fetch(API_URL);
-      const data = await response.json();
-      setUsuarios(data.usuarios);
+      const response = await fetch(API);
+      const datos = await response.json();
+      setUsuarios(datos.usuarios);
     } catch (error) {
       console.error(error);
     }
@@ -33,7 +34,7 @@ export default function App() {
   const crearUsuario = async () => {
     if (!id || !nombre || !edad) return;
 
-    await fetch(API_URL, {
+    await fetch(API, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -51,7 +52,7 @@ export default function App() {
 
   {/* Funcion para elimnar Usarios*/}
   const eliminarUsuario = async (id) => {
-    await fetch(API_URL + id, {
+    await fetch(API + id, {
       method: "DELETE",
     });
 

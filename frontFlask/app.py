@@ -26,7 +26,6 @@ def crear_usuario():
     requests.post(API, json=nuevo_usuario)
     return redirect("/")
 
-
 # Eliminar usuario
 @app.route("/eliminar/<int:id>")
 def eliminar_usuario(id):
