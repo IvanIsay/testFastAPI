@@ -1,0 +1,11 @@
+1. Creamos carpeta data: archivo database.py y pasamos la tabla 
+
+2. carpeta MODELS : archivo USUARIO.py y pasamos modelo a import
+
+3. carpeta SECURITY: Archivo AUTH.py y pasamos lo de HTTPBasic
+
+4. carpeta ROUTERS: Archivo USUARIOS.py y pasamos los endpoints del crud
+
+5. carpeta ROUTERS: Archivo MISC.py y pasamos todos los endpoints sobrantes
+
+6. Deja el Main limpio solo con lo necesario

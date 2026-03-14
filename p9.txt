@@ -1,0 +1,20 @@
+1. definimos el nuevo contenedor con POSTGRE en el DockerCompose
+
+2. agregamos Dependencias de BD a requiriments.txt
+
+3. Luego reconstruye el contenedor: $ docker compose build
+
+4. revisamos los contenedores funcionando
+
+
+
+5.Crear conexión a la base de datos db.py
+
+6. Crear modelo de base de datos usuarioDB.py
+
+7. Ejecutar las tablas automáticamente editamos el Main.py
+
+8. Modificar router para usar PostgreSQL    
+
+9. y acomodamos los Endpoints con el modelo SQLAQUEMY
+
