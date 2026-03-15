@@ -2,19 +2,21 @@
 
 2. agregamos Dependencias de BD a requiriments.txt
 
-3. Luego reconstruye el contenedor: $ docker compose build
+3. Luego reconstruye el contenedor: $ docker compose down -v   >>>   $ docker compose build
 
 4. revisamos los contenedores funcionando
 
 
 
-5.Crear conexión a la base de datos db.py
+5.Crear conexión a la base de datos db.py >>> borramos el de la lista ficticia
 
-6. Crear modelo de base de datos usuarioDB.py
+6. Crear modelo de base de datos en data usuarioDB.py
 
-7. Ejecutar las tablas automáticamente editamos el Main.py
+7. Preparamos la Ejecucion de las tablas automáticamente editamos el Main.py
 
-8. Modificar router para usar PostgreSQL    
+8. Modificar router para usar SQLAQUEMY en los Endpoints 
 
-9. y acomodamos los Endpoints con el modelo SQLAQUEMY
+9. acomodamos los Endpoints para trabjar con el modelo SQLAQUEMY
+
+10. probamos con los Endpoints y con la extension database conectadonos al contenedor
 

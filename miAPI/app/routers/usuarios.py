@@ -4,7 +4,7 @@ from app.security.auth import verificar_peticion
 
 from sqlalchemy.orm import Session
 from app.data.db import get_db
-from app.models.usuarioDB import Usuario
+from app.data.usuarioDB import Usuario
 
 router = APIRouter(
     prefix="/v1/usuarios",
@@ -21,7 +21,6 @@ async def leer_usuarios(db: Session = Depends(get_db)):
         "total": len(usuarios),
         "usuarios": usuarios
     }
-    
     
 
 @router.post("/", status_code=status.HTTP_201_CREATED)
@@ -40,6 +39,11 @@ async def crear_usuario(usuario: UsuarioBase, db: Session = Depends(get_db)):
     }
     
     
+
+
+
+
+
 
 @router.put("/{id}", status_code=status.HTTP_200_OK)
 async def actualizar_usuario(
